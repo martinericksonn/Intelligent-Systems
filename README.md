@@ -1,1 +1,1 @@
-Information Systems
+Intelligent Systems
