@@ -1,4 +1,4 @@
-go :-
+start :-
     write('----------------------------------------------------------------------\n'),
     write('An expert system to analyize user''s possible disorder based on feedback \n'),
     write('----------------------------------------------------------------------\n'),
@@ -11,7 +11,7 @@ go :-
     write('----------------------------------------------------------------------\n'),
     write('----------------------------------------------------------------------\n').
     
-    go :-
+    start :-
     write('----------------------------------------------------------------------\n'),
     write('----------------------------------------------------------------------\n'),
     write('Sorry, I don''t seem to be able to'),nl,
@@ -22,9 +22,9 @@ go :-
     symptom(Patient,worrying_social_situations) :- 
     verify(Patient," Worrying about social situations (y/n) ?").
     symptom(Patient,worrying_embarrassing_social_situations) :- 
-    verify(Patient," worrying about embarrassing yourself in a social situation (y/n) ? ").
+    verify(Patient," Worrying about embarrassing yourself in a social situation (y/n) ? ").
     symptom(Patient,avoiding_social_situations) :- 
-    verify(Patient," Avoiding socialsituations (y/n) ?").
+    verify(Patient," Avoiding social situations (y/n) ?").
     symptom(Patient,conscious_actions) :- 
     verify(Patient," Conscious of your actions when in social settings (y/n) ? ").
     symptom(Patient,constantly_check) :- 
@@ -55,7 +55,7 @@ go :-
     verify(Patient," Are you reluctant to take personal risks or engage in new activities (y/n) ? ").
     symptom(Patient,self_doubt_overconfidence) :- 
     verify(Patient," My self-confidence ranges from GREAT self-doubt to\n EQUALLY GREAT overconfidence. (y/n) ? ").
-    symptom(Patient,mentally_dul) :- 
+    symptom(Patient,mentally_dull) :- 
     verify(Patient," Sometimes I am mentally dull and at other times I think VERY creatively. (y/n) ? ").
     symptom(Patient,optimism_pessimism) :- 
     verify(Patient," At some times I have GREAT optimism and at other times\n EQUALLY GREAT pessimism.(y/n) ? ").
@@ -94,33 +94,59 @@ go :-
     symptom(Patient,felt_numb),
     symptom(Patient,difficulty_concentrating),
     symptom(Patient,nightmares),
-    symptom(Patient,stressful_experience).
+    write(Patient),write(' has experienced the following:'),
+    write('\n\n Felt numb or detached from people, activities, or your surroundings'),
+    write('\n Having difficulty concentrating'),
+    write('\n Had nightmares about the event/s or thought about the event/s'),
+    write('\n Had nightmares about the event/s or thought about the event/s'),nl.
 
     hypothesis(Patient,depression) :-
     symptom(Patient,felt_numb),
     symptom(Patient,emptiness),
     symptom(Patient,thoughts_hurting_yourself),
     symptom(Patient,little_interest_in_doing_things),
-    symptom(Patient,poor_appetite).
+    symptom(Patient,poor_appetite),nl,
+    write(Patient),write(' has experienced the following:'),    
+    write('\n Felt numb or detached from people, activities, or your surroundings'),
+    write('\n Have felt chronic emptiness or loneliness '),
+    write('\n Thoughts that you would be better off dead, or of hurting yourself '),
+    write('\n Little interest or pleasure in doing things  '),
+    write('\n Poor appetite or overeating'),nl.
 
     hypothesis(Patient,social_anxiety_disorder) :-
     symptom(Patient,avoiding_social_situations),
     symptom(Patient,worrying_social_situations),
     symptom(Patient,worrying_embarrassing_social_situations),
-    symptom(Patient,conscious_actions).
+    symptom(Patient,conscious_actions),nl,
+    write(Patient),write(' has experienced the following:'),
+    write('\n Avoiding social situations'),
+    write('\n Worrying about social situations '),
+    write('\n Worrying about embarrassing yourself in a social situation '),
+    write('\n Conscious of your actions when in social settings '),nl.
 
     hypothesis(Patient,obsessive_compulsive_disorder) :-
     symptom(Patient,organise_items),
     symptom(Patient,constantly_check),
     symptom(Patient,intrusive_thoughts),
-    symptom(Patient,repetitive_behaviours).
+    symptom(Patient,repetitive_behaviours),nl,
+    write(Patient),write(' has experienced the following:'),
+    write(' Feel the need to organise items in a certain way '),
+    write('\n Have experienced the need to constantly check on something '),
+    write('\n Have experienced intrusive thoughts that are aggressive'),
+    write('\n Had find self repeating words, counting or doing other\n repetitive behaviours '),nl.
     
     hypothesis(Patient,bipolar_disorder) :-
     symptom(Patient,irritability),
     symptom(Patient,self_doubt_overconfidence),
-    symptom(Patient,mentally_dul),
+    symptom(Patient,mentally_dull),
     symptom(Patient,tearfulness),
-    symptom(Patient,optimism_pessimism).
+    symptom(Patient,optimism_pessimism),nl,
+    write(Patient),write(' has experienced the following:'),
+    write('\n Have frequent feelings of irritability and aggressiveness'),
+    write('\n Had self-confidence ranges from GREAT self-doubt to\n EQUALLY GREAT overconfidence '),
+    write('\n Sometimes mentally dull and at other times VERY creatively '),
+    write('\n Sometimes show MUCH tearfulness and crying and at\n other times laugh and joke EXCESSIVELY  '),
+    write('\n Sometimes had GREAT optimism and at other times\n EQUALLY GREAT pessimism '),nl.
 
 
     hypothesis_check:-
@@ -128,37 +154,32 @@ go :-
         write_hypothesis(Patient,X),
         write('----------------------------------------------------------------------\n').
 
-
     write_hypothesis(Patient,post_traumatic_stress_disorder):-
         write('Post Trraumatic Stress Disorder\n'),
         write('Post-traumatic stress disorder PTSD is a mental health condition that''s triggered by a terrifying event '),nl,
         write('either experiencing it or witnessing it. Symptoms may include flashbacks, nightmares and severe anxiety,\nas well as uncontrollable thoughts about the event'),nl.
-      
-    
+       
     write_hypothesis(Patient,depression):-
         write('Depression\n'),
-        write('a common and serious medical illness that negatively affects how you feel, the way you think and how you act\n'),nl,
-        write('Fortunately, it is also treatable. Depression causes feelings of sadness and/or a loss of interest in activities you once enjoyed.\n'),nl,
-        write('It can lead to a variety of emotional and physical problems and can decrease your ability to function at work and at home.\n'),nl.
+        write('a common and serious medical illness that negatively affects how you feel, the way you think and how you act'),nl,
+        write('Fortunately, it is also treatable. Depression causes feelings of sadness and/or a loss of interest in activities you once enjoyed.'),nl,
+        write('It can lead to a variety of emotional and physical problems and can decrease your ability to function at work and at home.'),nl.
        
-    
     write_hypothesis(Patient,social_anxiety_disorder):-
         write('Social Anxiety Disorder\n'),
-        write('A mental health condition. It is an intense, persistent fear of being watched and judged by others\n'),nl,
-        write('This fear can affect work, school, and your other day-to-day activities. It can even make it hard to make and keep friends.\n'),nl.
+        write('A mental health condition. It is an intense, persistent fear of being watched and judged by others'),nl,
+        write('This fear can affect work, school, and your other day-to-day activities. It can even make it hard to make and keep friends.'),nl.
 
     write_hypothesis(Patient,obsessive_compulsive_disorder):-
         write('Obsessive Compulsive Disorder\n'),
-        write('Features a pattern of unwanted thoughts and fears (obsessions) that lead you to do repetitive behaviors\n'),nl,
-        write('These obsessions and compulsions interfere with daily activities and cause significant distress.\n'),nl.
+        write('Features a pattern of unwanted thoughts and fears (obsessions) that lead you to do repetitive behaviors'),nl,
+        write('These obsessions and compulsions interfere with daily activities and cause significant distress.'),nl.
         
     write_hypothesis(Patient,bipolar_disorder):-
         write('Bipolar Disorder\n'),
-        write('is a brain and behavior disorder characterized by severe shifts in a person''s mood and energy making \n'),nl,
-        write('it difficult for the person to function.The condition typically starts in late adolescence or early adulthood,\n'),nl,
-        write('The condition typically starts in late adolescence or early adulthood although it can show up in children and in older adults\n'),nl.
-    
-
+        write('is a brain and behavior disorder characterized by severe shifts in a person''s mood and energy making '),nl,
+        write('it difficult for the person to function.The condition typically starts in late adolescence or early adulthood,'),nl,
+        write('The condition typically starts in late adolescence or early adulthood although it can show up in children and in older adults'),nl.
     
 
     write_list([]).
